@@ -13,7 +13,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
       - name: Build Docker image
         run: docker build -t lambda_gh_actions .
+
+      - name: Tag Docker image
+        run: docker tag lambda_gh_actions:latest 590312749310.dkr.ecr.ap-southeast-2.amazonaws.com/lambda-gh-actions:latest
 
 
