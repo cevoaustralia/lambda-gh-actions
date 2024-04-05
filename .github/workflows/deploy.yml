@@ -36,6 +36,12 @@ jobs:
       - name: Push Docker image to ECR
         run: docker push 590312749310.dkr.ecr.ap-southeast-2.amazonaws.com/lambda-gh-actions:latest
 
+      - name: update lambda function
+        run: |
+          aws lambda update-function-code \
+              --function-name lambda-gh-actions \
+              --image-uri 590312749310.dkr.ecr.ap-southeast-2.amazonaws.com/lambda-gh-actions:latest
+
 
 
 
